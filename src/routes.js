@@ -24,24 +24,24 @@ export const routes = [
     },
   },
   {
-    method: "POST",
-    path: buildRoutePath("/task"),
-    handler: (req, res) => {
-      const { name, email } = req.body;
-      const user = {
-        id: randomUUID(),
-        title,
-        description,
-        completed_at: null,
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString(),
-      };
+    method: 'POST',
+    path:buildRoutePath('/task'),
+    handler: (req, res)=> {
+        const {title, description} = req.body
+        const user = {
+            id: randomUUID(),
+            title,
+            description,
+            completed_at: null,
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString()
+        }
 
-      database.insert("tasks", user);
+        database.insert('tasks', user)
 
-      return res.writeHead(201).end();
-    },
-  },
+        return res.writeHead(201).end()
+    }
+},
   {
     method: "DELETE",
     path: buildRoutePath("/task/:id"),
